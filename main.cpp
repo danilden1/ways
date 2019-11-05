@@ -32,7 +32,7 @@ void test(st test, int routeTest [6]);
 
 int main()
 {
-    //тестовые точки
+    //тестовые точки координт
     double g [5][2] = {{1, 1},
                 {2, 7},
                 {5, 11},
@@ -86,8 +86,8 @@ st makeRoute (st task)
     //TODO: написать алгоритм https://habr.com/ru/post/332208/
     task = makeDistance(task);
     task.route[0] = 0;
-    task.route[1] = 1;
-    task.route[2] = 2;
+    task.route[1] = 2;
+    task.route[2] = 1;
     task.route[3] = 3;
     task.route[4] = 4;
     task.route[5] = 0;
@@ -97,15 +97,20 @@ void test(st test, int routeTest [6])
 {
     int count1 = 0;
     int count2 = 0;
-    int routeTest1 [6] = {0};
+    //тесты учитывают оьратный обход маршрута
     for(int i = 0; i < 6; i++)
         if(routeTest [i] != test.route[i])
             count1++;
     for(int i = 0; i < 6; i++)
         if(routeTest [5 - i] != test.route[i])
             count2++;
-    if(count1 == 0 or count2 == 0)
+    if(count1 == 0 or count2 == 0) {
         cout << "Test 1 done" << endl;
+        cout << "Your answer: ";
+        for (int i = 0; i < 6; i++)
+            cout << test.route[i] << " ";
+        cout << endl;
+    }
     else
     {
         cout << "Test 1 failed!" << endl;
